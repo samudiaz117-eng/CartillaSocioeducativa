@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reciclaje y Educación Tecnológica Sostenible - UNAD SISSU</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unad: {
+                            blue: '#003366',
+                            lightBlue: '#0055A5',
+                            orange: '#e87722',
+                            yellow: '#fdb813',
+                            green: '#2e7d32',
+                            lightGreen: '#4caf50'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active {
+            border-bottom: 4px solid #e87722;
+            color: #003366;
+            font-weight: 700;
+            background-color: #f1f5f9;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header Institucional con Logos y Encabezado de la imagen -->
+    <header class="bg-white border-b-4 border-unad-yellow shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+            
+            <!-- Izquierda: Logo UNAD panorámico -->
+            <div class="flex items-center gap-3">
+                <svg class="h-10 sm:h-12 w-auto" viewBox="0 0 350 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="350" height="80" rx="8" fill="#FFFFFF"/>
+                    <path d="M20 50C20 33.4315 33.4315 20 50 20C66.5685 20 80 33.4315 80 50" stroke="#003366" stroke-width="12" stroke-linecap="round"/>
+                    <circle cx="50" cy="50" r="14" fill="#fdb813"/>
+                    <text x="95" y="42" font-family="Inter, sans-serif" font-weight="800" font-size="26" fill="#003366">UNAD</text>
+                    <text x="95" y="58" font-family="Inter, sans-serif" font-weight="600" font-size="11" fill="#e87722">UNIVERSIDAD NACIONAL ABIERTA Y A DISTANCIA</text>
+                </svg>
+            </div>
+
+            <!-- Centro: Subtítulo Institucional de la imagen -->
+            <div class="hidden md:block text-center border-l border-r border-slate-200 px-6">
+                <span class="inline-block bg-unad-blue text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-1">
+                    PRESTACIÓN DEL SERVICIO SOCIAL UNADISTA
+                </span>
+                <p class="text-xs text-slate-600 font-semibold">Ingeniería de Telecomunicaciones | ODS 12</p>
+            </div>
+
+            <!-- Lateral Derecho: Ubicación + Logo UNAD Circular -->
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-bold text-unad-blue">Barrio Marandú</p>
+                    <p class="text-[10px] text-slate-500">Engativá - Bogotá</p>
+                </div>
+                <svg class="h-11 w-11 sm:h-13 sm:w-13 rounded-full border-2 border-unad-orange shadow-sm bg-white" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" fill="#003366"/>
+                    <circle cx="50" cy="50" r="38" fill="#FFFFFF"/>
+                    <path d="M25 55 C 35 30, 65 30, 75 55" stroke="#003366" stroke-width="8" stroke-linecap="round" fill="none"/>
+                    <circle cx="50" cy="55" r="10" fill="#fdb813"/>
+                    <text x="50" y="82" font-weight="800" font-size="10" fill="#003366" text-anchor="middle">UNAD</text>
+                </svg>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Banner Principal Banner Azul de la imagen -->
+    <section class="bg-gradient-to-r from-unad-blue via-unad-lightBlue to-slate-900 text-white py-10 px-4 shadow-inner text-center">
+        <div class="max-w-5xl mx-auto space-y-4">
+            <div class="inline-flex items-center gap-2 bg-unad-green text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow">
+                <i data-lucide="leaf" class="w-4 h-4"></i> ODS 12: PRODUCCIÓN Y CONSUMO RESPONSABLES
+            </div>
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight leading-tight text-white uppercase">
+                RECICLAJE Y EDUCACIÓN TECNOLÓGICA SOSTENIBLE
+            </h1>
+            <p class="text-xs sm:text-sm md:text-base font-normal text-slate-200 max-w-3xl mx-auto leading-relaxed">
+                Cartilla Socioeducativa desde la Ingeniería para el desarrollo de capacidades comunitarias y la gestión integral de RAEE en el <strong>Barrio Marandú, Engativá - Bogotá</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Menú de Navegación por Pestañas Adaptado -->
+    <nav class="bg-white border-b border-slate-200 shadow-sm sticky top-[68px] sm:top-[74px] z-40 overflow-x-auto">
+        <div class="max-w-5xl mx-auto flex justify-start md:justify-center min-w-max px-2">
+            <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn tab-active px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold text-slate-600 hover:text-unad-blue transition-all flex items-center gap-2">
+                <i data-lucide="alert-circle" class="w-4 h-4"></i> 1. Problemática RAEE
+            </button>
+            <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold text-slate-600 hover:text-unad-blue transition-all flex items-center gap-2">
+                <i data-lucide="recycle" class="w-4 h-4"></i> 2. ODS 12 en Acción
+            </button>
+            <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold text-slate-600 hover:text-unad-blue transition-all flex items-center gap-2">
+                <i data-lucide="wrench" class="w-4 h-4"></i> 3. Taller Práctico 1
+            </button>
+            <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn px-4 sm:px-6 py-3.5 text-xs sm:text-sm font-semibold text-slate-600 hover:text-unad-blue transition-all flex items-center gap-2">
+                <i data-lucide="shield-check" class="w-4 h-4"></i> 4. Taller Práctico 2
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-5xl mx-auto px-4 py-8 flex-grow space-y-6 w-full">
+
+        <!-- Pestaña 1: Problemática RAEE -->
+        <div id="tab1" class="tab-content space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3 mb-6 border-b pb-4 border-slate-100">
+                    <div class="p-3 bg-red-100 text-red-600 rounded-xl">
+                        <i data-lucide="trash-2" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-unad-blue">Sección 1: El Desafío de los Residuos Electrónicos (RAEE)</h2>
+                        <p class="text-xs sm:text-sm text-slate-500">Diagnóstico sobre los residuos de aparatos eléctricos y electrónicos en Colombia</p>
+                    </div>
+                </div>
+
+                <p class="text-sm text-slate-700 leading-relaxed mb-6">
+                    En Colombia se producen anualmente miles de toneladas de Residuos de Aparatos Eléctricos y Electrónicos (RAEE). En sectores urbanos como el Barrio Marandú, la sustitución prematura de routers, computadores y teléfonos genera acumulación en los hogares o descarte inapropiado en basureros comunes, contaminando el ambiente y desaprovechando dispositivos útiles.
+                </p>
+
+                <!-- Tarjetas de Impacto -->
+                <div class="grid md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-red-400 transition-all">
+                        <div class="w-10 h-10 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mb-3">
+                            <i data-lucide="biohazard" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm mb-1">Impacto Ambiental</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Contaminación de suelos por la liberación inapropiada de metales pesados como plomo, mercurio y cadmio presentes en baterías y placas.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-amber-400 transition-all">
+                        <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-3">
+                            <i data-lucide="wifi-off" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm mb-1">Aprovechamiento Técnico</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Muchos de los equipos desechados pueden reconfigurarse para extender su uso o donarse a estudiantes que requieren acceso a tecnologías.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 hover:border-unad-green transition-all">
+                        <div class="w-10 h-10 bg-emerald-100 text-unad-green rounded-lg flex items-center justify-center mb-3">
+                            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-sm mb-1">Economía Circular</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Fomentar la restauración tecnológica reduce el consumo de materias primas y apoya la construcción de capacidad local.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cita APA -->
+                <div class="bg-slate-100 border-l-4 border-unad-blue p-4 rounded-r-xl">
+                    <div class="flex items-start gap-2">
+                        <i data-lucide="quote" class="w-5 h-5 text-unad-blue flex-shrink-0 mt-0.5"></i>
+                        <div>
+                            <h4 class="text-xs font-bold text-unad-blue uppercase tracking-wider mb-1">Cita Bibliográfica Institucional (Norma APA):</h4>
+                            <p class="text-xs text-slate-700 italic">
+                                Ministerio de Ambiente y Desarrollo Sostenible. (2021). <em>Política Nacional para la Gestión Integral de los Residuos de Aparatos Eléctricos y Electrónicos (RAEE)</em>. Gobierno de Colombia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña 2: ODS 12 en Acción -->
+        <div id="tab2" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3 mb-6 border-b pb-4 border-slate-100">
+                    <div class="p-3 bg-emerald-100 text-unad-green rounded-xl">
+                        <i data-lucide="recycle" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-unad-blue">Sección 2: ODS 12 en Acción (Producción y Consumo Responsable)</h2>
+                        <p class="text-xs sm:text-sm text-slate-500">Plan estratégico para la reducción, donación y disposición final autorizada</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Paso 1 -->
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-unad-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Paso 1</span>
+                            <h3 class="font-bold text-slate-900 text-base mt-3 mb-2">Extensión de Vida Útil</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Priorizar el diagnóstico, mantenimiento y la reparación básica antes de considerar sustituir cualquier equipo electrónico.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 text-[11px] font-semibold text-unad-blue bg-blue-50 p-2.5 rounded-lg">
+                            <i data-lucide="wrench" class="w-4 h-4 text-unad-orange"></i>
+                            Mantenimiento Preventivo
+                        </div>
+                    </div>
+
+                    <!-- Paso 2 -->
+                    <div class="bg-emerald-50/60 p-6 rounded-xl border border-emerald-200 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-unad-green text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Paso 2</span>
+                            <h3 class="font-bold text-slate-900 text-base mt-3 mb-2">Formatear y Entregar a Estudiantes</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Formatear y optimizar computadores viejos para dejarlos funcionado como nuevos y entregarlos a estudiantes de la comunidad que los necesiten para su aprendizaje.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 text-[11px] font-semibold text-emerald-800 bg-emerald-100 p-2.5 rounded-lg">
+                            <i data-lucide="laptop" class="w-4 h-4 text-unad-green"></i>
+                            Reutilización Educativa
+                        </div>
+                    </div>
+
+                    <!-- Paso 3 -->
+                    <div class="bg-orange-50/60 p-6 rounded-xl border border-orange-200 flex flex-col justify-between">
+                        <div>
+                            <span class="bg-unad-orange text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">Paso 3</span>
+                            <h3 class="font-bold text-slate-900 text-base mt-3 mb-2">Contenedores Posconsumo Autorizados</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Llevar los dispositivos inservibles a Centros Comerciales con Contenedores Posconsumo autorizados para garantizar su tratamiento profesional.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 text-[11px] font-semibold text-orange-900 bg-orange-100 p-2.5 rounded-lg">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-unad-orange"></i>
+                            Puntos Posconsumo Oficiales
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña 3: Taller Práctico 1 -->
+        <div id="tab3" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3 mb-6 border-b pb-4 border-slate-100">
+                    <div class="p-3 bg-unad-orange text-white rounded-xl shadow-md">
+                        <i data-lucide="wrench" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-unad-blue">Sección 3: Taller Práctico 1 (Restauración y Reuso de Equipos)</h2>
+                        <p class="text-xs sm:text-sm text-slate-500">Capacitación técnica en formateo de computadores y reconfiguración de dispositivos</p>
+                    </div>
+                </div>
+
+                <!-- Cuadro de Aviso Destacado -->
+                <div class="bg-amber-50 border-l-4 border-unad-orange p-5 rounded-r-xl mb-6">
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="info" class="w-6 h-6 text-unad-orange flex-shrink-0 mt-0.5"></i>
+                        <div>
+                            <h3 class="font-bold text-amber-900 text-sm mb-1 uppercase">Indicación Especial para la Comunidad:</h3>
+                            <p class="text-xs text-amber-900 leading-relaxed">
+                                El día del taller, cada persona de la comunidad debe llevar un aparato electrónico que no utilice (como un router antiguo, un portátil, un PC de escritorio o un celular) para aprender paso a paso a diagnosticarlo, formatearlo o reconfigurarlo de forma práctica durante la sesión.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Módulo 1 -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-unad-blue text-white text-xs font-bold px-2.5 py-1 rounded-md">MÓDULO 1</span>
+                            <h3 class="font-bold text-slate-800 text-base">Formateo de PC Específico (Paso a Paso)</h3>
+                        </div>
+                        
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="bg-white p-4 rounded-lg border border-slate-200 space-y-2">
+                                <h4 class="font-bold text-unad-blue flex items-center gap-2">
+                                    <i data-lucide="disc" class="w-4 h-4 text-unad-orange"></i> Pasos Técnicos para Dejar el Equipo como Nuevo:
+                                </h4>
+                                <ol class="list-decimal pl-5 space-y-1.5 text-slate-600">
+                                    <li><strong>Respaldo de Información:</strong> Copiar todos los archivos importantes en un disco externo o almacenamiento en la nube antes de iniciar el procedimiento.</li>
+                                    <li><strong>Obtención de la Imagen ISO:</strong> Descargar la imagen ISO oficial del sistema operativo deseado desde su sitio web oficial.</li>
+                                    <li><strong>Creación de la USB Booteable:</strong> Insertar una memoria USB (mínimo 8 GB) y utilizar un programa instalador (ej. Rufus o Ventoy) para grabar la imagen ISO y hacerla arrancable.</li>
+                                    <li><strong>Arranque desde la BIOS / Boot Menu:</strong> Conectar la USB al equipo, encenderlo y presionar la tecla del Boot Menu (comúnmente <code>F12</code>, <code>F11</code>, <code>F2</code> o <code>Del</code>) para seleccionar la memoria USB como primera opción de arranque.</li>
+                                    <li><strong>Instalación Limpia:</strong> Seguir el asistente de instalación, seleccionar la partición del disco duro, formatearla e instalar el sistema operativo desde cero.</li>
+                                    <li><strong>Mantenimiento Preventivo:</strong> Realizar la limpieza de archivos temporales, actualización de controladores y soplar el polvo acumulado en los ventiladores y componentes físicos antes de poner el PC a disposición de un estudiante.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 2 -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-unad-green text-white text-xs font-bold px-2.5 py-1 rounded-md">MÓDULO 2</span>
+                            <h3 class="font-bold text-slate-800 text-base">Reutilización de Routers y Revisión de Baterías</h3>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 text-xs">
+                            <div class="bg-white p-4 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-unad-blue mb-1 flex items-center gap-1.5">
+                                    <i data-lucide="router" class="w-4 h-4 text-unad-orange"></i> Router como Punto de Acceso (AP)
+                                </h4>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Ingresar a la interfaz web del router (ej. <code>192.168.1.1</code>), desactivar el servidor DHCP y asignar una IP válida dentro del rango del módem principal para ampliar la cobertura Wi-Fi del hogar.
+                                </p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-slate-200">
+                                <h4 class="font-bold text-unad-blue mb-1 flex items-center gap-1.5">
+                                    <i data-lucide="battery" class="w-4 h-4 text-unad-orange"></i> Diagnóstico de Baterías
+                                </h4>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Verificar el nivel de desgaste de las baterías de móviles antiguos y descartar físicamente aquellas que presenten deformación o sobrecalentamiento.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña 4: Taller Práctico 2 -->
+        <div id="tab4" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-3 mb-6 border-b pb-4 border-slate-100">
+                    <div class="p-3 bg-unad-blue text-white rounded-xl shadow-md">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-unad-blue">Sección 4: Taller Práctico 2 (Privacidad y Gestión Posconsumo)</h2>
+                        <p class="text-xs sm:text-sm text-slate-500">Borrado seguro de datos personales y disposición adecuada en centros posconsumo</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Módulo 3 -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-unad-orange text-white text-xs font-bold px-2.5 py-1 rounded-md">MÓDULO 3</span>
+                            <h3 class="font-bold text-slate-800 text-base">Borrado Seguro de Datos Personales y Restablecimiento</h3>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200 text-xs text-slate-700 space-y-3">
+                            <p class="text-slate-600">
+                                Antes de donar, regalar o descartar cualquier equipo informático o móvil, es obligatorio proteger la privacidad del usuario:
+                            </p>
+                            <ul class="list-disc pl-5 space-y-1.5 text-slate-600">
+                                <li><strong>Desvinculación de Cuentas:</strong> Cerrar sesión y eliminar las cuentas de correo, Google, iCloud o redes sociales vinculadas al dispositivo.</li>
+                                <li><strong>Restablecimiento de Fábrica (Hard Reset):</strong> Ejecutar la opción de restauración total de valores de fábrica en la configuración del sistema para borrar imágenes, archivos y contraseñas almacenadas de forma definitiva.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Módulo 4 -->
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-emerald-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">MÓDULO 4</span>
+                            <h3 class="font-bold text-slate-800 text-base">Disposición en Puntos Posconsumo Autorizados</h3>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-emerald-100 text-xs text-slate-700 space-y-3">
+                            <p class="text-slate-600">
+                                Aquellos equipos o partes electrónicas que ya no sean funcionales ni se puedan restaurar, deben ser depositados en un punto de recolección oficial de programas posconsumo.
+                            </p>
+                            <div class="bg-emerald-100/70 border-l-4 border-emerald-600 p-4 rounded-r-lg">
+                                <h4 class="font-bold text-emerald-900 flex items-center gap-1.5 text-xs mb-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-700"></i>
+                                    Punto Autorizado Cercano para la Comunidad:
+                                </h4>
+                                <p class="text-emerald-900 font-bold text-sm">Centro Comercial Diverplaza</p>
+                                <p class="text-emerald-800"><strong>Dirección:</strong> Transversal 99 # 70A - 89, Engativá, Bogotá D.C.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Institucional con Logo SISSU a la derecha -->
+    <footer class="bg-unad-blue text-white py-6 px-4 mt-auto border-t-4 border-unad-orange">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Datos UNAD / SISSU -->
+            <div class="text-center md:text-left space-y-1">
+                <p class="text-xs font-bold text-unad-yellow">UNIVERSIDAD NACIONAL ABIERTA Y A DISTANCIA (UNAD)</p>
+                <p class="text-xs text-slate-300">
+                    Escuela de Ciencias Básicas, Tecnología e Ingeniería (ECBTI)
+                </p>
+                <p class="text-[11px] text-slate-400">
+                    Prestación del Servicio Social Unadista (SISSU) — Barrio Marandú, Bogotá
+                </p>
+            </div>
+
+            <!-- Esquina inferior derecha: Logo SISSU Circular -->
+            <div class="flex items-center gap-3 bg-white/10 p-2 rounded-xl border border-white/20">
+                <div class="text-right hidden sm:block">
+                    <p class="text-[11px] font-bold text-unad-yellow">Sistema del Servicio Social Unadista</p>
+                    <p class="text-[9px] text-slate-300">SISSU</p>
+                </div>
+                <svg class="h-12 w-12 sm:h-14 sm:w-14 rounded-full border-2 border-unad-yellow bg-white p-0.5 shadow" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="46" fill="#2e7d32"/>
+                    <circle cx="50" cy="50" r="36" fill="#FFFFFF"/>
+                    <path d="M30 60 C 40 35, 60 35, 70 60" stroke="#2e7d32" stroke-width="7" stroke-linecap="round" fill="none"/>
+                    <circle cx="50" cy="40" r="8" fill="#fdb813"/>
+                    <text x="50" y="80" font-weight="800" font-size="11" fill="#2e7d32" text-anchor="middle">SISSU</text>
+                </svg>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Script de Pestañas -->
+    <script>
+        lucide.createIcons();
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('tab-active');
+        }
+    </script>
+</body>
+</html>
